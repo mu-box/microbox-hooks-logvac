@@ -15,11 +15,13 @@
 @test "Configure Old Logvac" {
   # Run Hook
   run run_hook "test-migrate-old" "configure" "$(payload configure)"
+  echo "$output"
   [ "$status" -eq 0 ]
 }
 
 @test "Start Logvac On Old" {
   run run_hook "test-migrate-old" "start" "$(payload start)"
+  echo "$output"
   [ "$status" -eq 0 ]
 }
 
@@ -27,7 +29,7 @@
   # wait for a few seconds...
   sleep 3
 
-  run docker exec "test-migrate-old" bash -c "curl -k https://127.0.0.1:6361/logs -i -H \"X-USER-TOKEN: 123\" -d '{\"id\":\"log-test\",\"type\":\"test\",\"message\":\"my first log\"}' 2> /dev/null"
+  run docker exec "test-migrate-old" bash -c "curl -k https://127.0.0.1:6361/logs -i -H \"X-USER-TOKEN: 123\" -d '{\"id\":\"log-test\",\"type\":\"test\",\"message\":\"my first log\"}' 2>&1"
   echo "$output"
   [ "$status" -eq 0 ]
 }
@@ -38,11 +40,13 @@
 
 @test "Configure New Logvac" {
   run run_hook "test-migrate-new" "configure" "$(payload configure-new)"
+  echo "$output"
   [ "$status" -eq 0 ]
 }
 
 @test "Prepare New Import" {
   run run_hook "test-migrate-new" "import-prep" "$(payload import-prep)"
+  echo "$output"
   [ "$status" -eq 0 ]
 }
 
@@ -52,11 +56,13 @@
   [ "$status" -eq 0 ]
 
   run docker exec "test-migrate-new" bash -c "[[ ! -d /root/var ]]"
+  echo "$output"
   [ "$status" -eq 0 ]
 }
 
 @test "Stop Old Logvac Service" {
   run run_hook "test-migrate-old" "stop" "$(payload stop)"
+  echo "$output"
   [ "$status" -eq 0 ]
 }
 
@@ -66,16 +72,19 @@
   [ "$status" -eq 0 ]
 
   run docker exec "test-migrate-new" bash -c "[[ ! -d /root/var ]]"
+  echo "$output"
   [ "$status" -eq 0 ]
 }
 
 @test "Clean After Import" {
   run run_hook "test-migrate-new" "import-clean" "$(payload import-clean)"
+  echo "$output"
   [ "$status" -eq 0 ]
 }
 
 @test "Start New Logvac Service" {
   run run_hook "test-migrate-new" "start" "$(payload start)"
+  echo "$output"
   [ "$status" -eq 0 ]
 }
 

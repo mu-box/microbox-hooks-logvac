@@ -6,19 +6,19 @@ start_mist() {
     --name=mist \
     -d \
     --privileged \
-    --net=nanobox \
+    --net=microbox \
     --ip=192.168.0.100 \
-    nanobox/mist
+    mubox/mist
 
   # configure
   docker exec \
     mist \
-    /opt/nanobox/hooks/configure "$(configure_payload)"
+    /opt/microbox/hooks/configure "$(configure_payload)"
 
   # start
   docker exec \
     mist \
-    /opt/nanobox/hooks/start "$(start_payload)"
+    /opt/microbox/hooks/start "$(start_payload)"
 }
 
 stop_mist() {

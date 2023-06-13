@@ -1,5 +1,5 @@
-# nanobox-hooks-logvac [![Build Status Image](https://travis-ci.org/nanobox-io/nanobox-hooks-logvac.svg)](https://travis-ci.org/nanobox-io/nanobox-hooks-logvac)
-Nanobox hooks for the Logvac service
+# microbox-hooks-logvac [![Build Status Image](https://github.com/mu-box/microbox-hooks-logvac/actions/workflows/ci.yaml/badge.svg)](https://github.com/mu-box/microbox-hooks-logvac/actions)
+Microbox hooks for the Logvac service
 
 ## Publishing
 
@@ -7,7 +7,7 @@ To publish hooks, run `make`
 
 ## Testing
 
-All changes, are tested through Travi-ci.
+All changes, are tested through GitHub Actions.
 
 #### Local testing
 
@@ -23,4 +23,4 @@ cd /vagrant/test
 
 ## License
 
-The MIT License (MIT)
+This project is released under [The MIT License](http://opensource.org/licenses/MIT).

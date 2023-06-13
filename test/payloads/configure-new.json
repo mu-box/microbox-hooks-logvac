@@ -1,5 +1,7 @@
 {
   "logvac_host": "127.0.0.1",
+  "mist_host": "192.168.0.100",
+  "mist_token": "123",
   "platform": "production",
   "config": {
     "token": "123"
@@ -27,7 +29,7 @@
     }
   ],
   "extra_path_dirs": [
-    "/data/var/home/gonano/bin",
+    "/data/var/home/gomicro/bin",
     "/var/tmp"
   ],
   "extra_steps": [
@@ -48,8 +50,8 @@
   "env": {
     "APP_NAME": "slippery-sloth",
     "DATA_DB_HOST": "192.168.0.10",
-    "DATA_DB_USERS": "root gonano",
+    "DATA_DB_USERS": "root gomicro",
     "DATA_DB_ROOT_PW": "secret",
-    "DATA_DB_GONANO_PW": "less-secret"
+    "DATA_DB_GOMICRO_PW": "less-secret"
   }
 }

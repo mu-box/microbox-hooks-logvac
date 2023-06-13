@@ -15,28 +15,34 @@
 @test "Configure" {
   # Run Hook
   run run_hook "test-single" "configure" "$(payload configure)"
+  echo "$output"
   [ "$status" -eq 0 ]
 
   # Verify logvac configuration
   run docker exec test-single bash -c "[ -f /etc/logvac/config.json ]"
+  echo "$output"
   [ "$status" -eq 0 ]
 
   # Verify narc configuration
-  run docker exec test-single bash -c "[ -f /opt/gonano/etc/narc.conf ]"
+  run docker exec test-single bash -c "[ -f /opt/gomicro/etc/narc.conf ]"
+  echo "$output"
   [ "$status" -eq 0 ]
 }
 
 @test "Start" {
   # Run hook
   run run_hook "test-single" "start" "$(payload start)"
+  echo "$output"
   [ "$status" -eq 0 ]
 
   # Verify logvac running
   run docker exec test-single bash -c "ps aux | grep [l]ogvac"
+  echo "$output"
   [ "$status" -eq 0 ]
 
   # Verify narc running
   run docker exec test-single bash -c "ps aux | grep [n]arc"
+  echo "$output"
   [ "$status" -eq 0 ]
 }
 
@@ -58,10 +64,12 @@
 @test "Stop" {
   # Run hook
   run run_hook "test-single" "stop" "$(payload start)"
+  echo "$output"
   [ "$status" -eq 0 ]
 
   # Test the double stop
   run run_hook "test-single" "stop" "$(payload start)"
+  echo "$output"
   [ "$status" -eq 0 ]
 
   # Wait until services shut down
